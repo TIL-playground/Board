@@ -8,4 +8,7 @@ public record ArticleDto(
         String title,
         String content
 ) {
+    public ArticleDto addId(final Long id) {
+        return new ArticleDto(id, title, content);
+    }
 }
