@@ -1,4 +1,4 @@
-package com.practice.board.common.proxy;
+package com.practice.board.common;
 
 public interface CrudProxy<V> {
     V create(Object... args);
