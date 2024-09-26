@@ -3,12 +3,13 @@ package com.practice.board.article.application.proxy;
 import com.practice.board.article.application.service.ArticleService;
 import com.practice.board.article.domain.ArticleDto;
 import com.practice.board.common.CrudProxy;
+import com.practice.board.common.Proxy;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-public class ArticleLongCrudProxy implements CrudProxy<ArticleDto> {
+class ArticleLongCrudProxy implements CrudProxy<ArticleDto> {
     private CrudProxy<ArticleDto> nextProxy;
     private final ArticleService service;
 
@@ -39,8 +40,14 @@ public class ArticleLongCrudProxy implements CrudProxy<ArticleDto> {
     }
 
     @Override
-    public void addProxy(final CrudProxy<ArticleDto> crudProxy) {
-        if (nextProxy != null) nextProxy = crudProxy;
-        else nextProxy.addProxy(crudProxy);
+    public void addProxy(final Proxy<ArticleDto> proxy) {
+        assert proxy != null;
+
+        if (nextProxy == null) {
+            if (proxy instanceof CrudProxy) {
+                nextProxy = (CrudProxy<ArticleDto>) proxy;
+            }
+        }
+        else nextProxy.addProxy(proxy);
     }
 }
