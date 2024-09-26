@@ -1,6 +1,6 @@
 package com.practice.board.article.interfaces;
 
-import com.practice.board.article.application.factory.ArticleCrudFactory;
+import com.practice.board.article.application.proxy.ArticleCrudFactory;
 import com.practice.board.article.domain.ArticleDto;
 import com.practice.board.article.interfaces.http.ArticleRequestDto;
 import com.practice.board.article.interfaces.http.ArticleResponseDto;
