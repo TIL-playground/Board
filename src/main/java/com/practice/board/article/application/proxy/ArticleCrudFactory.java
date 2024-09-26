@@ -1,7 +1,5 @@
 package com.practice.board.article.application.proxy;
 
-import com.practice.board.article.application.proxy.ArticleCrudProxy;
-import com.practice.board.article.application.proxy.ArticleLongCrudProxy;
 import com.practice.board.article.domain.ArticleDto;
 import com.practice.board.common.Factory;
 import com.practice.board.common.CrudProxy;
