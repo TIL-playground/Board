@@ -1,30 +1,30 @@
 package com.practice.board.article.application.service;
 
+import com.practice.board.article.domain.ArticleDataFactory;
 import com.practice.board.article.domain.ArticleDto;
-import com.practice.board.article.domain.ArticleRepository;
-import lombok.RequiredArgsConstructor;
+import com.practice.board.common.DataProxy;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
-@Transactional
-@RequiredArgsConstructor
 class ArticleServiceImpl implements ArticleService {
-    private final ArticleRepository repository;
+    private final DataProxy<ArticleDto> proxy;
 
-    @Override
-    public ArticleDto save(final ArticleDto dto) {
-        return repository.save(dto);
+    public ArticleServiceImpl(final ArticleDataFactory factory) {
+        this.proxy = factory.get();
     }
 
     @Override
-    @Transactional(readOnly = true)
+    public ArticleDto save(final ArticleDto dto) {
+        return proxy.save(dto);
+    }
+
+    @Override
     public ArticleDto get(final Long id) {
-        return repository.getById(id);
+        return proxy.get(id);
     }
 
     @Override
     public void delete(final Long id) {
-        repository.deleteById(id);
+        proxy.delete(id);
     }
 }
