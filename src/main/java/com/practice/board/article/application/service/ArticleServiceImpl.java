@@ -7,24 +7,24 @@ import org.springframework.stereotype.Service;
 
 @Service
 class ArticleServiceImpl implements ArticleService {
-    private final DataProxy<ArticleDto> proxy;
+    private final DataProxy<ArticleDto> dataProxy;
 
     public ArticleServiceImpl(final ArticleDataFactory factory) {
-        this.proxy = factory.get();
+        this.dataProxy = factory.get();
     }
 
     @Override
     public ArticleDto save(final ArticleDto dto) {
-        return proxy.save(dto);
+        return dataProxy.save(dto);
     }
 
     @Override
     public ArticleDto get(final Long id) {
-        return proxy.get(id);
+        return dataProxy.get(id);
     }
 
     @Override
     public void delete(final Long id) {
-        proxy.delete(id);
+        dataProxy.delete(id);
     }
 }
