@@ -1,16 +1,12 @@
 package com.practice.board.common;
 
 public abstract class CrudProxy<V> implements Proxy<V> {
-    protected CrudProxy<V> next;
+    private CrudProxy<V> next;
 
     public abstract V create(Object... args);
     public abstract V read(Object... args);
     public abstract V update(Object... args);
     public abstract void delete(Object... args);
-
-    public void setNext(CrudProxy<V> next) {
-        this.next = next;
-    }
 
     protected V proceedCreate(Object... args) {
         return next != null ? next.create(args) : null;
