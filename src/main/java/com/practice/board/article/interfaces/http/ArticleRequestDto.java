@@ -1,6 +1,5 @@
 package com.practice.board.article.interfaces.http;
 
-import com.practice.board.article.domain.ArticleDto;
 import jakarta.annotation.Nullable;
 
 public record ArticleRequestDto(

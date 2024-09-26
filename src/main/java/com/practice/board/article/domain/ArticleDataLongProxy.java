@@ -2,7 +2,6 @@ package com.practice.board.article.domain;
 
 import com.practice.board.common.DataProxy;
 import com.practice.board.common.Proxy;
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
