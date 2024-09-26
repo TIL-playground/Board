@@ -9,8 +9,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-class ArticleCrudProxy implements CrudProxy<ArticleDto> {
-    private CrudProxy<ArticleDto> nextProxy;
+class ArticleCrudProxy extends CrudProxy<ArticleDto> {
     private final ArticleService service;
 
     @Override
@@ -19,12 +18,12 @@ class ArticleCrudProxy implements CrudProxy<ArticleDto> {
             return service.save((ArticleDto) args[0]);
         }
 
-        return null;
+        return proceedCreate(args);
     }
 
     @Override
     public ArticleDto read(final Object... args) {
-        return nextProxy != null ? nextProxy.read(args) : null;
+        return proceedRead(args);
     }
 
     @Override
@@ -33,23 +32,11 @@ class ArticleCrudProxy implements CrudProxy<ArticleDto> {
             return service.save((ArticleDto) args[0]);
         }
         
-        return null;
+        return proceedUpdate(args);
     }
 
     @Override
     public void delete(final Object... args) {
-        if (nextProxy != null) nextProxy.delete(args);
-    }
-
-    @Override
-    public void addProxy(final Proxy<ArticleDto> proxy) {
-        assert proxy != null;
-
-        if (nextProxy == null) {
-            if (proxy instanceof CrudProxy) {
-                nextProxy = (CrudProxy<ArticleDto>) proxy;
-            }
-        }
-        else nextProxy.addProxy(proxy);
+        proceedDelete(args);
     }
 }
