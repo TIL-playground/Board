@@ -6,7 +6,7 @@ import com.practice.board.common.CrudProxy;
 import org.springframework.stereotype.Component;
 
 @Component
-public class ArticleCrudFactory implements Factory<ArticleDto> {
+class ArticleCrudFactory implements Factory<ArticleDto> {
     private final CrudProxy<ArticleDto> crudProxy;
     
     private ArticleCrudFactory(final ArticleCrudProxy crudProxy, final ArticleLongCrudProxy longCrudProxy) {

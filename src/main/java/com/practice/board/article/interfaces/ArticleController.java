@@ -1,35 +1,26 @@
 package com.practice.board.article.interfaces;
 
-import com.practice.board.article.application.ArticleCrudFactory;
-import com.practice.board.article.domain.ArticleDto;
-import com.practice.board.common.CrudProxy;
+import com.practice.board.article.application.ArticleApplicationProxyHandler;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@RequiredArgsConstructor
 @RequestMapping("/api/articles")
 class ArticleController {
-    private final CrudProxy<ArticleDto> crudProxy;
+    private final ArticleApplicationProxyHandler handler;
     private final ArticleHttpBodyMapper mapper;
-
-    private ArticleController(final ArticleCrudFactory factory, final ArticleHttpBodyMapper mapper) {
-        crudProxy = factory.get();
-        this.mapper = mapper;
-    }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     void createArticle(@RequestBody final ArticleRequestDto httpBody) {
-        final var dto = mapper.toDto(httpBody);
-
-        crudProxy.create(dto);
+        handler.create(mapper.toDto(httpBody));
     }
 
     @GetMapping("/{id}")
     ArticleResponseDto getArticle(@PathVariable final Long id) {
-        final var dto = crudProxy.read(id);
-
-        return mapper.toResponse(dto);
+        return mapper.toResponse(handler.read(id));
     }
 
     @PatchMapping("/{id}")
@@ -38,14 +29,12 @@ class ArticleController {
             @PathVariable final Long id,
             @RequestBody final ArticleRequestDto httpBody
     ) {
-        final var dto = mapper.toDto(httpBody.addId(id));
-
-        crudProxy.update(dto);
+        handler.update(mapper.toDto(httpBody.addId(id)));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteArticle(@PathVariable final Long id) {
-        crudProxy.delete(id);
+        handler.delete(id);
     }
 }

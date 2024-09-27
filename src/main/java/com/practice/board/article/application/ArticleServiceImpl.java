@@ -1,30 +1,27 @@
 package com.practice.board.article.application;
 
-import com.practice.board.article.domain.ArticleDataFactory;
+import com.practice.board.article.domain.ArticleDomainProxyHandler;
 import com.practice.board.article.domain.ArticleDto;
-import com.practice.board.common.DataProxy;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 @Service
+@RequiredArgsConstructor
 class ArticleServiceImpl implements ArticleService {
-    private final DataProxy<ArticleDto> dataProxy;
-
-    private ArticleServiceImpl(final ArticleDataFactory factory) {
-        this.dataProxy = factory.get();
-    }
+    private final ArticleDomainProxyHandler handler;
 
     @Override
     public ArticleDto save(final ArticleDto dto) {
-        return dataProxy.save(dto);
+        return handler.save(dto);
     }
 
     @Override
     public ArticleDto get(final Long id) {
-        return dataProxy.get(id);
+        return handler.get(id);
     }
 
     @Override
     public void delete(final Long id) {
-        dataProxy.delete(id);
+        handler.delete(id);
     }
 }
