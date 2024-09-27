@@ -1,1 +1,16 @@
-spring.application.name=board
+spring:
+  application:
+    name: board
+
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/
+    username:
+    password:
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+
+server:
+  port: 8080
