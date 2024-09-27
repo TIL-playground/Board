@@ -1,8 +1,8 @@
-package com.practice.board.article.interfaces.http;
+package com.practice.board.article.interfaces;
 
 import jakarta.annotation.Nullable;
 
-public record ArticleRequestDto(
+record ArticleRequestDto(
         @Nullable Long id,
         String title,
         String content

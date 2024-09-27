@@ -1,4 +1,4 @@
-package com.practice.board.article.application.service;
+package com.practice.board.article.application;
 
 import com.practice.board.article.domain.ArticleDataFactory;
 import com.practice.board.article.domain.ArticleDto;

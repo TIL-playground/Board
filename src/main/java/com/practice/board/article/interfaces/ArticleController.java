@@ -1,9 +1,7 @@
 package com.practice.board.article.interfaces;
 
-import com.practice.board.article.application.proxy.ArticleCrudFactory;
+import com.practice.board.article.application.ArticleCrudFactory;
 import com.practice.board.article.domain.ArticleDto;
-import com.practice.board.article.interfaces.http.ArticleRequestDto;
-import com.practice.board.article.interfaces.http.ArticleResponseDto;
 import com.practice.board.common.CrudProxy;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

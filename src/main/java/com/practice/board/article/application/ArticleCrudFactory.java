@@ -1,4 +1,4 @@
-package com.practice.board.article.application.proxy;
+package com.practice.board.article.application;
 
 import com.practice.board.article.domain.ArticleDto;
 import com.practice.board.common.Factory;
