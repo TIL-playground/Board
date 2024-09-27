@@ -12,7 +12,7 @@ class ArticleController {
     private final CrudProxy<ArticleDto> crudProxy;
     private final ArticleHttpBodyMapper mapper;
 
-    public ArticleController(final ArticleCrudFactory factory, final ArticleHttpBodyMapper mapper) {
+    private ArticleController(final ArticleCrudFactory factory, final ArticleHttpBodyMapper mapper) {
         crudProxy = factory.get();
         this.mapper = mapper;
     }

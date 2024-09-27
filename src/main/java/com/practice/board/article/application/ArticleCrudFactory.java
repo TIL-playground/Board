@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class ArticleCrudFactory implements Factory<ArticleDto> {
     private final CrudProxy<ArticleDto> crudProxy;
     
-    public ArticleCrudFactory(final ArticleCrudProxy crudProxy, final ArticleLongCrudProxy longCrudProxy) {
+    private ArticleCrudFactory(final ArticleCrudProxy crudProxy, final ArticleLongCrudProxy longCrudProxy) {
         crudProxy.addProxy(longCrudProxy);
         this.crudProxy = crudProxy;
     }

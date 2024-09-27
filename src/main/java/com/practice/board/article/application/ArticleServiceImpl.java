@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 class ArticleServiceImpl implements ArticleService {
     private final DataProxy<ArticleDto> dataProxy;
 
-    public ArticleServiceImpl(final ArticleDataFactory factory) {
+    private ArticleServiceImpl(final ArticleDataFactory factory) {
         this.dataProxy = factory.get();
     }
 

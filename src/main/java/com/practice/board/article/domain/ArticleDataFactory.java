@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 public class ArticleDataFactory implements Factory<ArticleDto> {
     private final DataProxy<ArticleDto> dataProxy;
 
-    public ArticleDataFactory(final ArticleDataProxy dataProxy, final ArticleDataLongProxy dataLongProxy) {
+    private ArticleDataFactory(final ArticleDataProxy dataProxy, final ArticleDataLongProxy dataLongProxy) {
         dataProxy.addProxy(dataLongProxy);
         this.dataProxy = dataProxy;
     }
