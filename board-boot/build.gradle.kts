@@ -1,19 +1,14 @@
-plugins {
-    id("java")
-}
-
-group = "module.board"
-version = "0.0.1-SNAPSHOT"
-
-repositories {
-    mavenCentral()
+tasks {
+    jar {
+        isEnabled = false
+    }
+    bootJar {
+        isEnabled = true
+    }
 }
 
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
+    implementation(project(":board-api"))
+    implementation(project(":board-application"))
+    implementation(project(":board-domain"))
 }

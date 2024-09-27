@@ -5,7 +5,7 @@ import org.mapstruct.MappingConstants;
 import org.mapstruct.ReportingPolicy;
 
 @Mapper(componentModel = MappingConstants.ComponentModel.SPRING, unmappedTargetPolicy = ReportingPolicy.IGNORE)
-interface ArticleMapper {
+interface ArticleDomainMapper {
     ArticleDto toDto(Article entity);
     Article toEntity(ArticleDto dto);
 }

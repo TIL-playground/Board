@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 @RequiredArgsConstructor
 class ArticleRepositoryImpl implements ArticleRepository {
     private final ArticleJpaRepository repository;
-    private final ArticleMapper mapper;
+    private final ArticleDomainMapper mapper;
 
     @Override
     public ArticleDto getById(final Long id) {

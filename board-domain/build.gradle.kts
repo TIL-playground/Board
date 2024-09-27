@@ -7,6 +7,10 @@ tasks {
     }
 }
 
+dependencies {
+    api (project(":board-domain:article-domain"))
+}
+
 subprojects {
     tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
         isEnabled = false

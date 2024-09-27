@@ -7,6 +7,10 @@ tasks {
     }
 }
 
+dependencies {
+    api (project(":board-application:article-application"))
+}
+
 subprojects {
     tasks {
         jar {
