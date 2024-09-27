@@ -1,1 +1,12 @@
 rootProject.name = 'board'
+include 'board-api'
+include 'board-application'
+include 'board-api:article-api'
+include 'board-application:article-application'
+include 'board-common'
+include 'board-domain'
+include 'board-domain'
+include 'board-domain:article-domain'
+findProject(':board-domain:article-domain')?.name = 'article-domain'
+include 'board-boot'
+
