@@ -1,9 +1,9 @@
 tasks {
-    bootJar {
-        isEnabled = false
-    }
     jar {
         isEnabled = true
+    }
+    bootJar {
+        isEnabled = false
     }
 }
 
@@ -12,11 +12,13 @@ dependencies {
 }
 
 subprojects {
-    tasks.withType<org.springframework.boot.gradle.tasks.bundling.BootJar> {
-        isEnabled = false
-    }
-    tasks.withType<Jar> {
-        isEnabled = true
+    tasks {
+        jar {
+            isEnabled = true
+        }
+        bootJar {
+            isEnabled = false
+        }
     }
 
     val useMySQL: Boolean by extra(false)
