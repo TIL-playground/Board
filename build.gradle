@@ -30,10 +30,16 @@ allprojects {
     if (project.name != "board-common") {
         dependencies {
             implementation 'org.springframework.boot:spring-boot-starter-web'
-            compileOnly 'org.projectlombok:lombok'
-            annotationProcessor 'org.projectlombok:lombok'
-            implementation 'org.mapstruct:mapstruct:1.6.0'
-            annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
+        }
+
+        if (project.name != "board-boot") {
+            dependencies {
+                implementation 'org.springframework.boot:spring-boot-starter-web'
+                compileOnly 'org.projectlombok:lombok'
+                annotationProcessor 'org.projectlombok:lombok'
+                implementation 'org.mapstruct:mapstruct:1.6.0'
+                annotationProcessor 'org.mapstruct:mapstruct-processor:1.6.0'
+            }
         }
     }
 
