@@ -1,26 +1,8 @@
-tasks {
-    jar {
-        isEnabled = true
-    }
-    bootJar {
-        isEnabled = false
-    }
-}
-
 dependencies {
     api (project(":board-domain:article-domain"))
 }
 
 subprojects {
-    tasks {
-        jar {
-            isEnabled = true
-        }
-        bootJar {
-            isEnabled = false
-        }
-    }
-
     val useMySQL: Boolean by extra(false)
 
     afterEvaluate {
