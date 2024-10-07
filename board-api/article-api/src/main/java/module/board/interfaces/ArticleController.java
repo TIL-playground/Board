@@ -3,6 +3,7 @@ package module.board.interfaces;
 import lombok.RequiredArgsConstructor;
 import module.board.application.ArticleApplicationProxyHandler;
 import module.board.application.ArticleDto;
+import module.board.common.HashUtil;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,8 +24,8 @@ class ArticleController {
     }
 
     @GetMapping("/{id}")
-    ArticleResponseDto getArticle(@PathVariable final Long id) {
-        return mapper.toResponse((ArticleDto) handler.read(id));
+    ArticleResponseDto getArticle(@PathVariable final String id) {
+        return ArticleResponseDto.fromArticleDto((ArticleDto) handler.read(HashUtil.decode(id)));
     }
 
     @GetMapping
@@ -36,25 +37,25 @@ class ArticleController {
 
         if (result != null) {
             return ((List<ArticleDto>) result).stream()
-                    .map(mapper::toResponse)
+                    .map(ArticleResponseDto::fromArticleDto)
                     .toList();
         }
 
         return Collections.emptyList();
     }
-
+    
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void updateArticle(
-            @PathVariable final Long id,
+            @PathVariable final String id,
             @RequestBody final ArticleRequestDto httpBody
     ) {
-        handler.update(mapper.toDto(httpBody.addId(id)));
+        handler.update(mapper.toDto(httpBody.addId(HashUtil.decode(id))));
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    void deleteArticle(@PathVariable final Long id) {
-        handler.delete(id);
+    void deleteArticle(@PathVariable final String id) {
+        handler.delete(HashUtil.decode(id));
     }
 }

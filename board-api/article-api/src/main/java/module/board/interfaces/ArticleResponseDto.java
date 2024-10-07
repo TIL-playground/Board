@@ -1,5 +1,8 @@
 package module.board.interfaces;
 
+import module.board.application.ArticleDto;
+import module.board.common.HashUtil;
+
 import java.time.Instant;
 
 record ArticleResponseDto(
@@ -9,4 +12,13 @@ record ArticleResponseDto(
         Instant writeTimestamp,
         Boolean isPublic
 ) {
+    public static ArticleResponseDto fromArticleDto(final ArticleDto dto) {
+        return new ArticleResponseDto(
+                HashUtil.encode(dto.id()),
+                dto.title(),
+                dto.content(),
+                dto.writeTimestamp(),
+                dto.isPublic()
+        );
+    }
 }
