@@ -15,7 +15,7 @@ public class ArticleApplicationProxyHandler {
         return proxy.create(args);
     }
 
-    public ArticleDto read(final Object... args) {
+    public Object read(final Object... args) {
         return proxy.read(args);
     }
 

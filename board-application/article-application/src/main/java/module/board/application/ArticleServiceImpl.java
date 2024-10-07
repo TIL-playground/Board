@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import module.board.domain.ArticleDomainProxyHandler;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 class ArticleServiceImpl implements ArticleService {
@@ -18,10 +20,16 @@ class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public ArticleDto get(final Long id) {
-        final var domainDto = handler.get(id);
+    public Object get(final Object... arg) {
+        final var result = handler.get(arg);
 
-        return mapper.toDto(domainDto);
+        if (result instanceof List) {
+            return ((List<module.board.domain.ArticleDto>) result).stream()
+                    .map(mapper::toDto)
+                    .toList();
+        }
+
+        return mapper.toDto((module.board.domain.ArticleDto) result);
     }
 
     @Override

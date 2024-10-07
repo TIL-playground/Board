@@ -1,7 +1,10 @@
 package module.board.domain;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
 
 @Repository
 @RequiredArgsConstructor
@@ -14,6 +17,15 @@ class ArticleRepositoryImpl implements ArticleRepository {
         final var entity = repository.findById(id).orElseThrow();
 
         return mapper.toDto(entity);
+    }
+
+    @Override
+    public List<ArticleDto> getAll(int page, int size) {
+        final var entities = repository.findAll(PageRequest.of(page, size));
+
+        return entities.stream()
+                .map(mapper::toDto)
+                .toList();
     }
 
     @Override

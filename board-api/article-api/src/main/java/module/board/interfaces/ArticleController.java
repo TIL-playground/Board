@@ -2,8 +2,12 @@ package module.board.interfaces;
 
 import lombok.RequiredArgsConstructor;
 import module.board.application.ArticleApplicationProxyHandler;
+import module.board.application.ArticleDto;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.Collections;
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -20,7 +24,23 @@ class ArticleController {
 
     @GetMapping("/{id}")
     ArticleResponseDto getArticle(@PathVariable final Long id) {
-        return mapper.toResponse(handler.read(id));
+        return mapper.toResponse((ArticleDto) handler.read(id));
+    }
+
+    @GetMapping
+    List<ArticleResponseDto> getAll(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        final var result = handler.read(page, size);
+
+        if (result != null) {
+            return ((List<ArticleDto>) result).stream()
+                    .map(mapper::toResponse)
+                    .toList();
+        }
+
+        return Collections.emptyList();
     }
 
     @PatchMapping("/{id}")

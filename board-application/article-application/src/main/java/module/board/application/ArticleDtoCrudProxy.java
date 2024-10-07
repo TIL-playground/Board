@@ -6,7 +6,7 @@ import org.springframework.stereotype.Component;
 
 @Component
 @RequiredArgsConstructor
-class ArticleCrudProxy extends CrudProxy<ArticleDto> {
+class ArticleDtoCrudProxy extends CrudProxy<ArticleDto> {
     private final ArticleService service;
 
     @Override
@@ -19,8 +19,8 @@ class ArticleCrudProxy extends CrudProxy<ArticleDto> {
     }
 
     @Override
-    public ArticleDto read(final Object... args) {
-        return proceedRead(args);
+    public Object read(final Object... args) {
+        return service.get(args);
     }
 
     @Override

@@ -3,7 +3,6 @@ package module.board.domain;
 import lombok.RequiredArgsConstructor;
 import module.board.common.DataProxy;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Transactional;
 
 @Component
 @RequiredArgsConstructor
@@ -11,23 +10,23 @@ class ArticleDataProxy extends DataProxy<ArticleDto> {
     private final ArticleRepository repository;
 
     @Override
-    @Transactional
     public ArticleDto save(final Object... args) {
-        if (args.length == 1 && args[0] instanceof ArticleDto) {
-            return repository.save((ArticleDto) args[0]);
-        }
-
         return proceedSave(args);
     }
 
     @Override
-    @Transactional(readOnly = true)
-    public ArticleDto get(final Object... args) {
+    public Object get(final Object... args) {
+        if (args.length == 2 && args[0] instanceof Integer && args[1] instanceof Integer) {
+            return repository.getAll(
+                    (int) args[0],
+                    (int) args[1]
+            );
+        }
+
         return proceedGet(args);
     }
 
     @Override
-    @Transactional
     public void delete(final Object... args) {
         proceedDelete(args);
     }

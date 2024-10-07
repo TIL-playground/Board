@@ -4,7 +4,7 @@ public abstract class CrudProxy<V> implements Proxy<V> {
     private CrudProxy<V> next;
 
     public abstract V create(Object... args);
-    public abstract V read(Object... args);
+    public abstract Object read(Object... args);
     public abstract V update(Object... args);
     public abstract void delete(Object... args);
 
@@ -12,7 +12,7 @@ public abstract class CrudProxy<V> implements Proxy<V> {
         return next != null ? next.create(args) : null;
     }
 
-    protected V proceedRead(Object... args) {
+    protected Object proceedRead(Object... args) {
         return next != null ? next.read(args) : null;
     }
 

@@ -4,14 +4,14 @@ public abstract class DataProxy<V> implements Proxy<V> {
     private DataProxy<V> next;
 
     public abstract V save(Object... args);
-    public abstract V get(Object... args);
+    public abstract Object get(Object... args);
     public abstract void delete(Object... args);
 
     protected V proceedSave(Object... args) {
         return next != null ? next.save(args) : null;
     }
 
-    protected V proceedGet(Object... args) {
+    protected Object proceedGet(Object... args) {
         return next != null ? next.get(args) : null;
     }
 

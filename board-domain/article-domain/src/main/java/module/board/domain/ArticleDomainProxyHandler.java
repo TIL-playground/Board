@@ -15,7 +15,7 @@ public class ArticleDomainProxyHandler {
         return dataProxy.save(args);
     }
 
-    public ArticleDto get(final Object... args) {
+    public Object get(final Object... args) {
         return dataProxy.get(args);
     }
 

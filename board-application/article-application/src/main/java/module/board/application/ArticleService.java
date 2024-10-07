@@ -2,6 +2,6 @@ package module.board.application;
 
 interface ArticleService {
     ArticleDto save(ArticleDto dto);
-    ArticleDto get(Long id);
+    Object get(Object... arg);
     void delete(Long id);
 }

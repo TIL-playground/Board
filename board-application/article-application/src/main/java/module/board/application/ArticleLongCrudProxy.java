@@ -15,12 +15,8 @@ class ArticleLongCrudProxy extends CrudProxy<ArticleDto> {
     }
 
     @Override
-    public ArticleDto read(final Object... args) {
-        if (args.length == 1 && args[0] instanceof Long) {
-            return service.get((Long) args[0]);
-        }
-
-        return proceedRead(args);
+    public Object read(final Object... args) {
+        return service.get(args[0]);
     }
 
     @Override
