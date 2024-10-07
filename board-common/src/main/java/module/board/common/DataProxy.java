@@ -21,10 +21,12 @@ public abstract class DataProxy<V> implements Proxy<V> {
 
     @Override
     public void addProxy(Proxy<V> next) {
-        if (this.next == null && next instanceof DataProxy) this.next = (DataProxy<V>) next;
-        else {
-            assert this.next != null;
+        if (this.next == null && next instanceof DataProxy) {
+            this.next = (DataProxy<V>) next;
+        } else if (this.next != null) {
             this.next.addProxy(next);
+        } else {
+            throw new IllegalArgumentException("잘못된 프록시 객체를 파라미터로 사용했습니다.");
         }
     }
 }
