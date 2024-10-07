@@ -30,20 +30,20 @@ class ArticleController {
 
     @GetMapping
     List<ArticleResponseDto> getAll(
-            @RequestParam(defaultValue = "0") int page,
-            @RequestParam(defaultValue = "10") int size
+            @RequestParam(defaultValue = "0") final int page,
+            @RequestParam(defaultValue = "10") final int size
     ) {
         final var result = handler.read(page, size);
 
-        if (result != null) {
-            return ((List<ArticleDto>) result).stream()
-                    .map(ArticleResponseDto::fromArticleDto)
-                    .toList();
+        if (result == null) {
+            return Collections.emptyList();
         }
 
-        return Collections.emptyList();
+        return ((List<ArticleDto>) result).stream()
+                .map(ArticleResponseDto::fromArticleDto)
+                .toList();
     }
-    
+
     @PatchMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void updateArticle(
