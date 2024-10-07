@@ -14,7 +14,8 @@ class ArticleRepositoryImpl implements ArticleRepository {
 
     @Override
     public ArticleDto getById(final Long id) {
-        final var entity = repository.findById(id).orElseThrow();
+        final var entity = repository.findById(id)
+                .orElseThrow(() -> new RuntimeException("일치하는 id의 게시물을 찾지 못했습니다."));
 
         return mapper.toDto(entity);
     }
