@@ -5,12 +5,13 @@ spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/
-    username: 
+    username:
     password: 
 
   jpa:
     hibernate:
       ddl-auto: update
+    open-in-view: false
 
 server:
   port: 8080

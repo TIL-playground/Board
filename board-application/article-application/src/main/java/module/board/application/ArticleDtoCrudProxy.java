@@ -26,7 +26,11 @@ class ArticleDtoCrudProxy extends CrudProxy<ArticleDto> {
     @Override
     public ArticleDto update(final Object... args) {
         if (args.length == 1 && args[0] instanceof ArticleDto) {
-            return service.save((ArticleDto) args[0]);
+            final var dto = service.get(((ArticleDto) args[0]).id());
+            final var writeTimestamp = ((ArticleDto) dto).writeTimestamp();
+            final var updatedDto = ((ArticleDto) args[0]).addWriteTimestamp(writeTimestamp);
+
+            return service.save(updatedDto);
         }
         
         return proceedUpdate(args);
