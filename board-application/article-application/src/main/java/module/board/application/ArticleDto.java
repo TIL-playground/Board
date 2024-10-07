@@ -1,11 +1,15 @@
 package module.board.application;
 
-import lombok.Builder;
+import java.time.Instant;
 
-@Builder
 public record ArticleDto(
         Long id,
         String title,
-        String content
+        String content,
+        Instant writeTimestamp,
+        Boolean isPublic
 ) {
+    public ArticleDto addWriteTimestamp(Instant writeTimestamp) {
+        return new ArticleDto(id, title, content, writeTimestamp, isPublic);
+    }
 }

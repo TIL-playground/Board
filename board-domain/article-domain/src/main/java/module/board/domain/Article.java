@@ -9,6 +9,11 @@ import lombok.Getter;
 import lombok.Builder;
 import lombok.AllArgsConstructor;
 import lombok.AccessLevel;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.springframework.data.annotation.CreatedDate;
+
+import java.time.Instant;
 
 @Entity
 @Getter
@@ -25,6 +30,16 @@ class Article {
 
     @Column(length = 50)
     private String content;
+
+    @CreationTimestamp
+    @Builder.Default
+    private Instant writeTimestamp;
+
+    @UpdateTimestamp
+    private Instant updateTimestamp;
+
+    @Builder.Default
+    private Boolean isPublic = true;
 
     protected Article() {}
 
