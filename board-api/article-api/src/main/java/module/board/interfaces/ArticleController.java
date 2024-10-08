@@ -20,12 +20,16 @@ class ArticleController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     void createArticle(@RequestBody final ArticleRequestDto httpBody) {
-        handler.create(mapper.toDto(httpBody));
+        final var dto = mapper.toDto(httpBody);
+        handler.create(dto);
     }
 
     @GetMapping("/{id}")
     ArticleResponseDto getArticle(@PathVariable final String id) {
-        return ArticleResponseDto.fromArticleDto((ArticleDto) handler.read(HashUtil.decode(id)));
+        final long decodedId = HashUtil.decode(id);
+        final var result = (ArticleDto) handler.read(decodedId);
+
+        return ArticleResponseDto.fromArticleDto(result);
     }
 
     @GetMapping
@@ -33,13 +37,13 @@ class ArticleController {
             @RequestParam(defaultValue = "0") final int page,
             @RequestParam(defaultValue = "10") final int size
     ) {
-        final var result = handler.read(page, size);
+        final var result = (List<ArticleDto>) handler.read(page, size);
 
         if (result == null) {
             return Collections.emptyList();
         }
 
-        return ((List<ArticleDto>) result).stream()
+        return result.stream()
                 .map(ArticleResponseDto::fromArticleDto)
                 .toList();
     }
@@ -50,12 +54,16 @@ class ArticleController {
             @PathVariable final String id,
             @RequestBody final ArticleRequestDto httpBody
     ) {
-        handler.update(mapper.toDto(httpBody.addId(HashUtil.decode(id))));
+        final long decodedId = HashUtil.decode(id);
+        final var dto = mapper.toDto(httpBody.addId(decodedId));
+
+        handler.update(dto);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
     void deleteArticle(@PathVariable final String id) {
-        handler.delete(HashUtil.decode(id));
+        final long decodedId = HashUtil.decode(id);
+        handler.delete(decodedId);
     }
 }
