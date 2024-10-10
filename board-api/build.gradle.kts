@@ -2,7 +2,7 @@ dependencies {
     api (project(":board-api:article-api"))
 }
 
-subprojects {
+allprojects {
     dependencies {
         implementation (project(":board-common"))
     }
