@@ -35,7 +35,7 @@ class SecurityConfig {
                 )
 
                 .sessionManagement(sessionManagement ->sessionManagement
-                        .sessionCreationPolicy(SessionCreationPolicy.NEVER)
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
 
                 .headers(headers -> headers
