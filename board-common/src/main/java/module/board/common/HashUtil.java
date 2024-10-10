@@ -1,5 +1,8 @@
 package module.board.common;
 
+import module.board.common.exception.BadRequestException;
+import module.board.common.exception.ServerException;
+
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
 import java.util.Base64;
@@ -17,7 +20,7 @@ public final class HashUtil {
             CIPHER = Cipher.getInstance(ALGORITHM);
 
         } catch (final Exception e) {
-            throw new RuntimeException("알고리즘이 잘못됐어요.");
+            throw new ServerException("알고리즘이 잘못됐어요.");
         }
     }
 
@@ -28,7 +31,7 @@ public final class HashUtil {
             final var encrypted = CIPHER.doFinal(String.valueOf(id).getBytes());
             return Base64.getUrlEncoder().withoutPadding().encodeToString(encrypted);
         } catch (final Exception e) {
-            throw new RuntimeException("암호화 실패");
+            throw new ServerException("암호화 실패");
         }
     }
 
@@ -41,7 +44,7 @@ public final class HashUtil {
 
             return Long.parseLong(new String(decrypted));
         } catch (final Exception e) {
-            throw new IllegalArgumentException("잘못된 해시값입니다.");
+            throw new BadRequestException("잘못된 해시값입니다.");
         }
     }
 }
