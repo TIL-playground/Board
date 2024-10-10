@@ -22,6 +22,7 @@ class TokenizerImpl implements Tokenizer {
         keyPair = Keys.keyPairFor(Version.V2);
     }
 
+    @Override
     public String generateToken(String userId) {
         var now = Instant.now();
 
@@ -35,6 +36,7 @@ class TokenizerImpl implements Tokenizer {
                 .compact();
     }
 
+    @Override
     public boolean validateToken(String authToken) {
         try {
             parseToken(authToken);
@@ -44,6 +46,7 @@ class TokenizerImpl implements Tokenizer {
         }
     }
 
+    @Override
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);
     }
