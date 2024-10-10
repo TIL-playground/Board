@@ -10,3 +10,5 @@ include 'board-application:article-application'
 
 include 'board-domain'
 include 'board-domain:article-domain'
+
+include 'board-security'
