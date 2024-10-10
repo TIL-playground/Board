@@ -1,19 +1,4 @@
-plugins {
-    id("java")
-}
-
-group = "module.board"
-version = "0.0.1-SNAPSHOT"
-
-repositories {
-    mavenCentral()
-}
-
 dependencies {
-    testImplementation(platform("org.junit:junit-bom:5.9.1"))
-    testImplementation("org.junit.jupiter:junit-jupiter")
-}
-
-tasks.test {
-    useJUnitPlatform()
+    implementation("org.springframework.boot:spring-boot-starter-security")
+    implementation("dev.paseto:jpaseto-its:0.7.0")
 }
