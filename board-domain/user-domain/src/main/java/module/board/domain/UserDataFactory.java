@@ -16,7 +16,7 @@ class UserDataFactory implements Factory<UserDto> {
     }
 
     @Override
-    public Proxy<UserDto> get() {
+    public DataProxy<UserDto> get() {
         return dataProxy;
     }
 }
