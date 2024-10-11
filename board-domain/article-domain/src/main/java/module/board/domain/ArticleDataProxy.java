@@ -2,6 +2,7 @@ package module.board.domain;
 
 import lombok.RequiredArgsConstructor;
 import module.board.common.DataProxy;
+import module.board.common.request.PageRequest;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -16,11 +17,8 @@ class ArticleDataProxy extends DataProxy<ArticleDto> {
 
     @Override
     public Object get(final Object... args) {
-        if (args.length == 2 && args[0] instanceof Integer && args[1] instanceof Integer) {
-            return repository.getAll(
-                    (int) args[0],
-                    (int) args[1]
-            );
+        if (args.length == 1 && args[0] instanceof final PageRequest pageRequest) {
+            return repository.getAll(pageRequest.page(), pageRequest.size());
         }
 
         return proceedGet(args);
