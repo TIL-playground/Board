@@ -3,7 +3,7 @@ package module.board.interfaces;
 import lombok.RequiredArgsConstructor;
 import module.board.application.ArticleApplicationProxyHandler;
 import module.board.application.ArticleDto;
-import module.board.common.HashUtil;
+import module.board.common.hash.HashUtil;
 import module.board.common.request.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

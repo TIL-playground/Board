@@ -1,4 +1,4 @@
-package module.board.common;
+package module.board.common.hash;
 
 import module.board.common.exception.BadRequestException;
 import module.board.common.exception.ServerException;

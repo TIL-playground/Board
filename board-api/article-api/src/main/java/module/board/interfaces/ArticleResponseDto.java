@@ -1,7 +1,7 @@
 package module.board.interfaces;
 
 import module.board.application.ArticleDto;
-import module.board.common.HashUtil;
+import module.board.common.hash.HashUtil;
 
 import java.time.Instant;
 

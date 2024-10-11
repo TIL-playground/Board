@@ -1,4 +1,4 @@
-package module.board.common;
+package module.board.common.proxy;
 
 public abstract class DataProxy<V> implements Proxy<V> {
     private DataProxy<V> next;

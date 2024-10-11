@@ -1,7 +1,7 @@
 package module.board.domain;
 
-import module.board.common.DataProxy;
-import module.board.common.Factory;
+import module.board.common.proxy.DataProxy;
+import module.board.common.factory.Factory;
 import org.springframework.stereotype.Component;
 
 @Component

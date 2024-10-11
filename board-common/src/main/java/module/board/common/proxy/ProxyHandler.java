@@ -1,4 +1,4 @@
-package module.board.common;
+package module.board.common.proxy;
 
 public interface ProxyHandler<T> {
     T save(Object... args);

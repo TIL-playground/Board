@@ -1,8 +1,7 @@
 package module.board.domain;
 
 import lombok.RequiredArgsConstructor;
-import module.board.common.DataProxy;
-import module.board.common.exception.BadRequestException;
+import module.board.common.proxy.DataProxy;
 import module.board.common.exception.ServerException;
 import module.board.common.query.ExistsUserByEmailQuery;
 import module.board.common.query.ExistsUserByNicknameQuery;

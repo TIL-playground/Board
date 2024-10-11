@@ -1,4 +1,4 @@
-package module.board.common;
+package module.board.common.proxy;
 
 public abstract class CrudProxy<V> implements Proxy<V> {
     private CrudProxy<V> next;

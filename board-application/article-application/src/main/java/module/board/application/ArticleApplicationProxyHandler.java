@@ -1,6 +1,6 @@
 package module.board.application;
 
-import module.board.common.CrudProxy;
+import module.board.common.proxy.CrudProxy;
 import org.springframework.stereotype.Component;
 
 @Component

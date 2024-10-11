@@ -1,6 +1,6 @@
 package module.board.domain;
 
-import module.board.common.DataProxy;
+import module.board.common.proxy.DataProxy;
 import org.springframework.stereotype.Component;
 
 @Component
