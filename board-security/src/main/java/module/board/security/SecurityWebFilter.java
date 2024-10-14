@@ -42,7 +42,7 @@ class SecurityWebFilter extends OncePerRequestFilter {
                 .map(token -> token.substring(BEARER_PREFIX_LENGTH));
     }
 
-    private void setAuthentication(String username) {
+    private void setAuthentication(final String username) {
         if (SecurityContextHolder.getContext().getAuthentication() == null) {
             var authentication = new UsernamePasswordAuthenticationToken(
                     new User(username, "", Collections.emptyList()),
