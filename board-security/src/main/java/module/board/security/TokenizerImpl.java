@@ -14,7 +14,6 @@ import java.util.function.Function;
 @Component
 class TokenizerImpl implements Tokenizer {
     private final SecretKey secretKey;
-
     private final KeyPair keyPair;
 
     private TokenizerImpl() {
