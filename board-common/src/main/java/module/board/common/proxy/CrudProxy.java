@@ -1,10 +1,13 @@
 package module.board.common.proxy;
 
+import java.util.List;
+
 public abstract class CrudProxy<V> implements Proxy<V> {
     private CrudProxy<V> next;
 
     public abstract V create(Object... args);
-    public abstract Object read(Object... args);
+    public abstract V readOne(Object... args);
+    public abstract List<V> readAll(Object... args);
     public abstract V update(Object... args);
     public abstract void delete(Object... args);
 
@@ -12,8 +15,12 @@ public abstract class CrudProxy<V> implements Proxy<V> {
         return next != null ? next.create(args) : null;
     }
 
-    protected Object proceedRead(Object... args) {
-        return next != null ? next.read(args) : null;
+    protected V proceedReadOne(Object... args) {
+        return next != null ? next.readOne(args) : null;
+    }
+
+    protected List<V> proceedReadAll(Object... args) {
+        return next != null ? next.readAll(args) : null;
     }
 
     protected V proceedUpdate(Object... args) {

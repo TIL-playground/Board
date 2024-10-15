@@ -3,6 +3,8 @@ package module.board.domain;
 import module.board.common.proxy.DataProxy;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 class ArticleDomainProxyHandlerImpl implements ArticleDomainProxyHandler {
     private final DataProxy<ArticleDto> dataProxy;
@@ -17,8 +19,13 @@ class ArticleDomainProxyHandlerImpl implements ArticleDomainProxyHandler {
     }
 
     @Override
-    public Object get(final Object... args) {
-        return dataProxy.get(args);
+    public ArticleDto getOne(final Object... args) {
+        return dataProxy.getOne(args);
+    }
+
+    @Override
+    public List<ArticleDto> getAll(final Object... args) {
+        return dataProxy.getAll(args);
     }
 
     @Override

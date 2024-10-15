@@ -1,7 +1,10 @@
 package module.board.application;
 
+import java.util.List;
+
 interface ArticleService {
     ArticleDto save(ArticleDto dto);
-    Object get(Object... arg);
+    ArticleDto getOne(Object... args);
+    List<ArticleDto> getAll(Object... args);
     void delete(Long id);
 }

@@ -1,18 +1,25 @@
 package module.board.common.proxy;
 
+import java.util.List;
+
 public abstract class DataProxy<V> implements Proxy<V> {
     private DataProxy<V> next;
 
     public abstract V save(Object... args);
-    public abstract Object get(Object... args);
+    public abstract V getOne(Object... args);
+    public abstract List<V> getAll(Object... args);
     public abstract void delete(Object... args);
 
     protected V proceedSave(Object... args) {
         return next != null ? next.save(args) : null;
     }
 
-    protected Object proceedGet(Object... args) {
-        return next != null ? next.get(args) : null;
+    protected V proceedGetOne(Object... args) {
+        return next != null ? next.getOne(args) : null;
+    }
+
+    protected List<V> proceedGetAll(Object... args) {
+        return next != null ? next.getAll(args) : null;
     }
 
     protected void proceedDelete(Object... args) {

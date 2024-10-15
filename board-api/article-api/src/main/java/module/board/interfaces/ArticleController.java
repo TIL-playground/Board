@@ -3,7 +3,6 @@ package module.board.interfaces;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import module.board.application.ArticleApplicationProxyHandler;
-import module.board.application.ArticleDto;
 import module.board.common.hash.HashUtil;
 import module.board.common.http.HttpStatusUtil;
 import module.board.common.request.PageRequest;
@@ -35,7 +34,7 @@ class ArticleController {
     @GetMapping("/{id}")
     ApiResponse<ArticleResponseDto> getArticle(@PathVariable final String id, HttpServletRequest request) {
         final long decodedId = HashUtil.decode(id);
-        final var result = (ArticleDto) handler.read(decodedId);
+        final var result = handler.readOne(decodedId);
 
         return ApiResponse.success(
                 HttpStatusUtil.OK,
@@ -50,7 +49,7 @@ class ArticleController {
             @RequestParam(defaultValue = "10") final int size,
             HttpServletRequest request
     ) {
-        final var result = (List<ArticleDto>) handler.read(new PageRequest(page, size));
+        final var result = handler.readAll(new PageRequest(page, size));
 
         return ApiResponse.success(
                 HttpStatusUtil.OK,

@@ -5,6 +5,8 @@ import module.board.common.proxy.DataProxy;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 class ArticleDataLongProxy extends DataProxy<ArticleDto> {
@@ -18,12 +20,18 @@ class ArticleDataLongProxy extends DataProxy<ArticleDto> {
 
     @Override
     @Transactional(readOnly = true)
-    public Object get(final Object... args) {
+    public ArticleDto getOne(final Object... args) {
         if (args.length == 1 && args[0] instanceof Long) {
             return repository.getById((Long) args[0]);
         }
 
-        return proceedGet(args);
+        return proceedGetOne(args);
+    }
+
+    @Override
+    @Transactional(readOnly = true)
+    public List<ArticleDto> getAll(final Object... args) {
+        return proceedGetAll(args);
     }
 
     @Override

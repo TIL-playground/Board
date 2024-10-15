@@ -5,6 +5,8 @@ import module.board.common.proxy.DataProxy;
 import module.board.common.request.PageRequest;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 class ArticleDataProxy extends DataProxy<ArticleDto> {
@@ -16,12 +18,17 @@ class ArticleDataProxy extends DataProxy<ArticleDto> {
     }
 
     @Override
-    public Object get(final Object... args) {
+    public ArticleDto getOne(final Object... args) {
+        return proceedGetOne(args);
+    }
+
+    @Override
+    public List<ArticleDto> getAll(final Object... args) {
         if (args.length == 1 && args[0] instanceof final PageRequest pageRequest) {
             return repository.getAll(pageRequest.page(), pageRequest.size());
         }
 
-        return proceedGet(args);
+        return proceedGetAll(args);
     }
 
     @Override

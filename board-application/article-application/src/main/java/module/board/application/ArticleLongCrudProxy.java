@@ -4,6 +4,8 @@ import lombok.RequiredArgsConstructor;
 import module.board.common.proxy.CrudProxy;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 @RequiredArgsConstructor
 class ArticleLongCrudProxy extends CrudProxy<ArticleDto> {
@@ -15,8 +17,13 @@ class ArticleLongCrudProxy extends CrudProxy<ArticleDto> {
     }
 
     @Override
-    public Object read(final Object... args) {
-        return service.get(args[0]);
+    public ArticleDto readOne(final Object... args) {
+        return service.getOne(args);
+    }
+
+    @Override
+    public List<ArticleDto> readAll(final Object... args) {
+        return service.getAll(args);
     }
 
     @Override

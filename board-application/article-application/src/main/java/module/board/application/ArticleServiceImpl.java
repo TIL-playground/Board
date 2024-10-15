@@ -20,16 +20,19 @@ class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Object get(final Object... arg) {
-        final var result = handler.get(arg);
+    public ArticleDto getOne(final Object... args) {
+        final var result = handler.getOne(args);
 
-        if (result instanceof List) {
-            return ((List<module.board.domain.ArticleDto>) result).stream()
-                    .map(mapper::toDto)
-                    .toList();
-        }
+        return mapper.toDto(result);
+    }
 
-        return mapper.toDto((module.board.domain.ArticleDto) result);
+    @Override
+    public List<ArticleDto> getAll(final Object... args) {
+        final var result = handler.getAll(args);
+
+        return result.stream()
+                .map(mapper::toDto)
+                .toList();
     }
 
     @Override

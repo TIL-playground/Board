@@ -3,6 +3,8 @@ package module.board.application;
 import module.board.common.proxy.CrudProxy;
 import org.springframework.stereotype.Component;
 
+import java.util.List;
+
 @Component
 public class ArticleApplicationProxyHandler {
     private final CrudProxy<ArticleDto> proxy;
@@ -15,8 +17,12 @@ public class ArticleApplicationProxyHandler {
         return proxy.create(args);
     }
 
-    public Object read(final Object... args) {
-        return proxy.read(args);
+    public ArticleDto readOne(final Object... args) {
+        return proxy.readOne(args);
+    }
+
+    public List<ArticleDto> readAll(final Object... args) {
+        return proxy.readAll(args);
     }
 
     public ArticleDto update(final Object... args) {
